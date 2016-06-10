@@ -60,8 +60,8 @@ class GitInfoCollector
     {
         $branchesResult = $this->command->getBranches();
 
-        if (count($branchesResult) === 1) {
-            return trim(current($branchesResult), " *\t\n\r\0\x0B");
+        if (count($branchesResult) === 1 && strpos(current($branchesResult), '* ') !== 0) {
+            return trim(current($branchesResult));
         }
 
         foreach ($branchesResult as $result) {
