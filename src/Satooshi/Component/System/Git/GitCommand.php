@@ -27,10 +27,7 @@ class GitCommand extends SystemCommand
      */
     public function getBranches()
     {
-        $lastCommitCommand = $this->createCommand('rev-parse HEAD');
-        $lastCommit = $this->executeCommand($lastCommitCommand);
-
-        $command = $this->createCommand('branch --contains ' . $lastCommit);
+        $command = $this->createCommand('branch --contains $(git rev-parse HEAD)');
 
         return $this->executeCommand($command);
     }
