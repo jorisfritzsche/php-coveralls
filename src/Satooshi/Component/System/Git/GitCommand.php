@@ -27,7 +27,7 @@ class GitCommand extends SystemCommand
      */
     public function getBranches()
     {
-        $command = $this->createCommand('branch --contains $(git rev-parse HEAD)');
+        $command = $this->createCommand('branch --contains $(git rev-parse HEAD) | grep -v detached');
 
         return $this->executeCommand($command);
     }

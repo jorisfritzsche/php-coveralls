@@ -60,6 +60,10 @@ class GitInfoCollector
     {
         $branchesResult = $this->command->getBranches();
 
+        if (count($branchesResult) === 1) {
+            return current($branchesResult);
+        }
+
         foreach ($branchesResult as $result) {
             if (strpos($result, '* ') === 0) {
                 $exploded = explode('* ', $result, 2);
