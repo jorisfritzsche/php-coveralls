@@ -61,7 +61,7 @@ class GitInfoCollector
         $branchesResult = $this->command->getBranches();
 
         if (count($branchesResult) === 1) {
-            return current($branchesResult);
+            return trim(current($branchesResult), " *\t\n\r\0\x0B");
         }
 
         foreach ($branchesResult as $result) {
